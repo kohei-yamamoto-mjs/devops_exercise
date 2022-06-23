@@ -2,7 +2,10 @@ function main (){
   
     var PEOPLE = Number(document.getElementById('people').value);
     var PEOPLE_element = document.getElementById("easy");
-    var Regacy = document.getElementsByClassName('people_list');
+     let items = document.querySelectorAll('li');
+for (const item of items) {
+	item.remove();
+}
    
    console.log("-----------開始-----------");
             
@@ -14,7 +17,7 @@ function main (){
    console.log(a,"人目---------");
          var ATEAM = SAIKORO();
         var syukei = HANTEI(ATEAM);
-        RESULT[a] = (`『${a}人目』🎲一回目:${ATEAM[1]} 🎲二回目:${ATEAM[2]} 🎲三回目:${ATEAM[3]} 🎲四回目:${ATEAM[4]}🎲五回目:${ATEAM[5]}`);
+        RESULT[a] = (`『${a}人目』🎲一回目:${ATEAM[1]} 🎲二回目:${ATEAM[2]} 🎲三回目:${ATEAM[3]} 🎲四回目:${ATEAM[4]}🎲五回目:${ATEAM[5]}::${syukei[4]}`);
         var person_result = document.createElement('li');
             person_result.className = 'people_list';
             person_result.textContent = RESULT[a];
