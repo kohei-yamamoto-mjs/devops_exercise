@@ -4,16 +4,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css.css" />
     <title>Document</title>
 </head>
 <body>
-    <input type="Number" id="people" min=1 max= 55000></input>
-   <p> <button id = "btn" onclick="main()">実行</button></p>
-   <p> <span id = "saikoro"></span></p>
+
+   <div class = "result";>
+    <p> <span id = "saikoro"></span></p>
     <p><span id = "hantei"></span></p>
     <p></p><span id = "easy"></span></p>
-    <p></p><span id = "SYUUKEI1"></span></p>
-    <p></p><span id = "SYUUKEI2"></span></p>
+</div> 
+    <div class = "IN">
+    <input type="Number" id="people" min = "1" placeholder="人数を入力してください"></input>
+   <p> <button id = "btn" onclick="main()">start</button></p>
+</div>
+<div class = "output">
+   
+     <p><span id = "SYUUKEI1"></span></p>
+     <p><span id = "SYUUKEI2"></span></p>
+ </div>
     <script src="newsaikoro.js"> </script>
 </body>
 </html>
