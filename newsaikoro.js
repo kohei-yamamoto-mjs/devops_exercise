@@ -2,18 +2,18 @@ function main (){
   
     var PEOPLE = Number(document.getElementById('people').value);
     var PEOPLE_element = document.getElementById("easy");
-     let items = document.querySelectorAll('li');
+    let items = document.querySelectorAll('li');
 for (const item of items) {
 	item.remove();
 }
-   
    console.log("-----------開始-----------");
             
       var SYUKEIcount =[0,0,0,0];
       var RESULT = [];
-        
+     if (PEOPLE>0 && PEOPLE <= 55000){
       for(var a = 1; a <= PEOPLE; a++)//人数分繰り返す 
        {
+
    console.log(a,"人目---------");
          var ATEAM = SAIKORO();
         var syukei = HANTEI(ATEAM);
@@ -27,11 +27,18 @@ for (const item of items) {
    console.log("集計用配列",syukei);
         SYUKEIsum(SYUKEIcount,syukei);//a人目の結果を集計に足す
        }//人数分繰り返す 終了
+    
    
       
          SYUKEIresult(SYUKEIcount);//集計を表示
    console.log("-----------終了-----------");
-          
+}else{
+    alert("1~55000を入力してください");
+    var x = document.getElementById("SYUUKEI1");
+    x.innerHTML = "";
+    var y = document.getElementById("SYUUKEI2");
+    y.innerHTML = "";
+}
    }
    
    
@@ -134,6 +141,8 @@ for (const item of items) {
       
       var a = 0;
       var A = MEGA == 0 ?  a = 0 : a = 1;
+
+      
       
       document.getElementById("SYUUKEI1").textContent =("\n「集計出すよ!!」(⋈◍＞◡＜◍)。✧♡.\n.\n.");
       KEKKA =(`\n生涯ドリンク無料！(5回連続１が出る)\n${DRINK}人\n${resultD[x]}\n\n次回ドリンク代無料！！(５個の内4つぞろ目)\n${NEXTDRINK}人\n${resultND[y]}\n\n半額！！\n${HANGAKU}人\n${resultH[z]}\n\nメガジョッキ！！\n${MEGA}人\n${resultG[a]}`);
