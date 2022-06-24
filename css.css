@@ -1,0 +1,23 @@
+#btn{
+    background-color:aqua;
+    margin-left:9% ;
+}
+
+.IN{
+    margin-left:43%;
+    margin-right: auto;
+    margin-top: 200px;
+}
+
+body{
+    background-image:url(neko890.jpg);
+}
+
+.output{
+    text-align: center;
+    
+}
+
+.people_list{
+    font-size: 25px; 
+}
