@@ -1,45 +1,54 @@
 function main (){
   
-    var PEOPLE = Number(document.getElementById('people').value);
-    var PEOPLE_element = document.getElementById("easy");
-    let items = document.querySelectorAll('li');
-for (const item of items) {
-	item.remove();
-}
+var PEOPLE = Number(document.getElementById('people').value);
+var PEOPLE_element = document.getElementById("easy");
+let items = document.querySelectorAll('li');
+for (const item of items) {item.remove();}//li 初期化
+
+var DRINKlist =[];
+var NEXTDRINKlist =[];
    console.log("-----------開始-----------");
             
       var SYUKEIcount =[0,0,0,0];
       var RESULT = [];
       
-     if (PEOPLE>0 && PEOPLE <= 55000){
+   if (PEOPLE>0 && PEOPLE <= 55000)
+     {
       for(var a = 1; a <= PEOPLE; a++)//人数分繰り返す 
-       {
-
+      {
    console.log(a,"人目---------");
-         var ATEAM = SAIKORO();
-        var syukei = HANTEI(ATEAM);
-        RESULT[a] = (`『${a}人目』🎲一回目:${ATEAM[1]} 🎲二回目:${ATEAM[2]} 🎲三回目:${ATEAM[3]} 🎲四回目:${ATEAM[4]}🎲五回目:${ATEAM[5]}::${syukei[4]}`);
-        var person_result = document.createElement('li');
-            person_result.className = 'people_list';
-            person_result.textContent = RESULT[a];
-            PEOPLE_element.appendChild(person_result);
+         var ATEAM = SAIKORO();//サイコロを指定回数分振って結果をATEAMとして取得
+         var syukei = HANTEI(ATEAM);//ATEAMを使って判定をし、syukeiとして取得
+             syukei[0] == 1 ?  DRINKlist.push(a): DRINK = 0;//生涯無料ならばその人数を記録する
+             syukei[1] == 1 ?  NEXTDRINKlist.push(a) : NEXTDRINK = 0;//次回ドリンク無料ならばその人数を記録する
+         RESULT[a] = (`『${a}人目』🎲一回目:${ATEAM[1]} 🎲二回目:${ATEAM[2]} 🎲三回目:${ATEAM[3]} 🎲四回目:${ATEAM[4]}🎲五回目:${ATEAM[5]}::${syukei[4]}`);
+
+        var person_result = document.createElement('li');//li要素作成
+            person_result.className = 'people_list';//クラスを指定
+            person_result.textContent = RESULT[a];//テキストを指定
+            PEOPLE_element.appendChild(person_result);//配置場所を指定
           
    console.log("main ATEAM(合計,出目)",ATEAM);
-   console.log("集計用配列",syukei);
+   console.log("集計用option配列",syukei);
         SYUKEIsum(SYUKEIcount,syukei);//a人目の結果を集計に足す
        }//人数分繰り返す 終了
-    
-   
+
       
-         SYUKEIresult(SYUKEIcount);//集計を表示
+         SYUKEIresult(SYUKEIcount);//集計をだすよ
+         SYUKEIresult2(DRINKlist,NEXTDRINKlist);
+         
    console.log("-----------終了-----------");
-}else{
-    alert("1~55000を入力してください");
-    var x = document.getElementById("SYUUKEI1");
-    x.innerHTML = "";
-    var y = document.getElementById("SYUUKEI2");
-    y.innerHTML = "";
-}
+  }
+
+
+
+else{
+      alert("1~55000を入力してください");
+      var x = document.getElementById("SYUUKEI1");
+          x.innerHTML = "55000は東京ドームの収容人数";
+      var y = document.getElementById("SYUUKEI2");
+          y.innerHTML = "";
+     }
    }
    
    
@@ -48,8 +57,8 @@ for (const item of items) {
    //関数1 サイコロ
    function SAIKORO()//inputからの情報を引数に取る(未実装)
    {    
-    var MEN = 6;      
-    var KAISUU = 5; 
+    var MEN = 6;
+    var KAISUU = 5;
     var sum =0;
     var TEAM = [];
     for(var i=1;i<=KAISUU;i++ )  //指定した回数繰り返す
@@ -60,7 +69,7 @@ for (const item of items) {
      }//サイコロ指定回数繰り返し 終わり
    
      TEAM[0]=sum;//0番目に合計を格納
-           
+    
    console.log("サイコロ関数内確認",TEAM);//コンソールに確認表示
     return TEAM;
    }
@@ -122,10 +131,8 @@ for (const item of items) {
        var NEXTDRINK = SYUKEIcount[1]; 
        var HANGAKU =   SYUKEIcount[2];
        var MEGA =      SYUKEIcount[3]; 
-       
    
           //コメント用変数//
-      
       var resultD = ["出るわけないよ","わわお！今日からタダ飲み！帰り道は気を付けて！(0.012%)"];
       var resultND = ["残念","おめでとう次回のご来店お待ちしてます！"];
       var resultH = ["酒ばっか飲むな！","今日は素敵な日！もう一杯いかがですか？"];
@@ -143,15 +150,14 @@ for (const item of items) {
       var a = 0;
       MEGA == 0 ?  a = 0 : a = 1;
 
-      
-      
       document.getElementById("SYUUKEI1").textContent =("\n「集計出すよ!!」(⋈◍＞◡＜◍)。✧♡.\n.\n.");
-      KEKKA =(`\n生涯ドリンク無料!(5回連続1が出る)\n${DRINK}人\n${resultD[x]}\n\n次回ドリンク代無料!!(5個の内4つぞろ目)\n${NEXTDRINK}人\n${resultND[y]}\n\n半額！！\n${HANGAKU}人\n${resultH[z]}\n\nメガジョッキ！！\n${MEGA}人\n${resultG[a]}`);
+      KEKKA =(`生涯ドリンク無料!(5回連続1が出る)${DRINK}人${resultD[x]}\n\n次回ドリンク代無料!!(5個の内4つぞろ目)\n${NEXTDRINK}人\n${resultND[y]}\n\n半額！！\n${HANGAKU}人\n${resultH[z]}\n\nメガジョッキ！！\n${MEGA}人\n${resultG[a]}`);
       document.getElementById("SYUUKEI2").textContent = KEKKA;
       //return KEKKA;
       console.log("生涯ドリンク無料",DRINK, "次回ドリンク無料",NEXTDRINK,"半額",HANGAKU,"メガジョッキ",MEGA);
    }
 
-   function SYUKEIresult2{
-    
+   function SYUKEIresult2(list1,list2){
+    document.getElementById("SYUUKEI2-2").textContent = (list1);
+    document.getElementById("SYUUKEI2-3").textContent = (list2);
    }
