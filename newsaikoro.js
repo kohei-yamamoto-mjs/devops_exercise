@@ -1,27 +1,47 @@
 function main (){
   
 var PEOPLE = Number(document.getElementById('people').value);
+var MEN = Number(document.getElementById('MEN').value);
+var KAISU = Number(document.getElementById('KAISU').value);
 var PEOPLE_element = document.getElementById("easy");
 let items = document.querySelectorAll('li');
 for (const item of items) {item.remove();}//li 初期化
 
 var DRINKlist =[];
 var NEXTDRINKlist =[];
+//------------------------------例外処理---------------------------//
+if (PEOPLE<=0 || PEOPLE >= 55000 ||PEOPLE == undefined)
+   {
+    alert("1~55000を入力してください");
+    var x = document.getElementById("SYUUKEI1");
+        x.innerHTML = "55000は東京ドームの収容人数";
+    var y = document.getElementById("SYUUKEI2");
+        y.innerHTML = "";
+        return;//強制終了
+   }
+//------------------------------例外処理---------------------------//
    console.log("-----------開始-----------");
             
       var SYUKEIcount =[0,0,0,0];
       var RESULT = [];
       
-   if (PEOPLE>0 && PEOPLE <= 55000)
-     {
+  
+      
       for(var a = 1; a <= PEOPLE; a++)//人数分繰り返す 
       {
    console.log(a,"人目---------");
-         var ATEAM = SAIKORO();//サイコロを指定回数分振って結果をATEAMとして取得
+         var ATEAM = SAIKORO(MEN,KAISU);//サイコロを指定回数分振って結果をATEAMとして取得
          var syukei = HANTEI(ATEAM);//ATEAMを使って判定をし、syukeiとして取得
              syukei[0] == 1 ?  DRINKlist.push(a): DRINK = 0;//生涯無料ならばその人数を記録する
              syukei[1] == 1 ?  NEXTDRINKlist.push(a) : NEXTDRINK = 0;//次回ドリンク無料ならばその人数を記録する
-         RESULT[a] = (`『${a}人目』🎲一回目:${ATEAM[1]} 🎲二回目:${ATEAM[2]} 🎲三回目:${ATEAM[3]} 🎲四回目:${ATEAM[4]}🎲五回目:${ATEAM[5]}::${syukei[4]}`);
+         
+             RESULT[a] = (`『${a}人目』`);
+             for(var i=1; i<ATEAM.length;i++)//可変するサイコロに合わせて文章を変化させる
+             {
+              RESULT[a]+=(`🎲${i}回目:${ATEAM[i]}`);
+             }
+             RESULT[a]+=( `::${syukei[4]}`);
+         
 
         var person_result = document.createElement('li');//li要素作成
             person_result.className = 'people_list';//クラスを指定
@@ -38,27 +58,19 @@ var NEXTDRINKlist =[];
          SYUKEIresult2(DRINKlist,NEXTDRINKlist);
          
    console.log("-----------終了-----------");
-  }
+  
 
 
 
-else{
-      alert("1~55000を入力してください");
-      var x = document.getElementById("SYUUKEI1");
-          x.innerHTML = "55000は東京ドームの収容人数";
-      var y = document.getElementById("SYUUKEI2");
-          y.innerHTML = "";
-     }
+
    }
    
    
    
    
    //関数1 サイコロ
-   function SAIKORO()//inputからの情報を引数に取る(未実装)
+   function SAIKORO(MEN,KAISUU)//inputからの情報を引数に取る(未実装)
    {    
-    var MEN = 6;
-    var KAISUU = 5;
     var sum =0;
     var TEAM = [];
     for(var i=1;i<=KAISUU;i++ )  //指定した回数繰り返す
@@ -161,3 +173,15 @@ else{
     document.getElementById("SYUUKEI2-2").textContent = (list1);
     document.getElementById("SYUUKEI2-3").textContent = (list2);
    }
+
+
+
+   function option() {
+    if (document.getElementById('option').checked){
+      // btn_1を非表示
+      document.getElementById('option').style.display = 'none'
+    }else{
+      // btn_1を表示
+      document.getElementById('option').style.display = 'inline'
+    }
+  }
