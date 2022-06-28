@@ -41,22 +41,19 @@ KAISU ===0? KAISU=5 :KAISU=KAISU;//回数デフォルト設定
          var syukei = HANTEI(ATEAM);//ATEAMを使って判定をし、syukeiとして取得
              syukei[0] == 1 ?  DRINKlist.push(a): DRINK = 0;//生涯無料ならばその人数を記録する
              syukei[1] == 1 ?  NEXTDRINKlist.push(a) : NEXTDRINK = 0;//次回ドリンク無料ならばその人数を記録する
-         
+         //------------------------------------------------------------------------------------------------
+         //----------------RESULT[a](a人目の表示)= "a人目"+("i回目:i回目の🎲")+"判定結果"　という仕組み--------
              RESULT[a] = (`『${a}人目』`);
-             for(var i=1; i<ATEAM.length;i++)//可変するサイコロに合わせて文章を変化させる
-             {
-              RESULT[a]+=(`🎲${i}回目:${ATEAM[i]}`);
-             }
+             for(var i=1; i<ATEAM.length;i++) { RESULT[a]+=(`🎲${i}回目:${ATEAM[i]}`);}
              RESULT[a]+=( `::${syukei[4]}`);
-         
+         //--------------------------------------------------------------------------------------------------
 
         var person_result = document.createElement('li');//li要素作成
             person_result.className = 'people_list';//クラスを指定
             person_result.textContent = RESULT[a];//テキストを指定
             PEOPLE_element.appendChild(person_result);//配置場所を指定
           
-   console.log("main ATEAM(合計,出目)",ATEAM);
-   console.log("集計用option配列",syukei);
+   console.log("集計用ID配列",syukei);
         SYUKEIsum(SYUKEIcount,syukei);//a人目の結果を集計に足す
        }//人数分繰り返す 終了
 
