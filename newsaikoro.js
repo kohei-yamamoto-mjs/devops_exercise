@@ -3,13 +3,17 @@ function main (){
 var PEOPLE = Number(document.getElementById('people').value);
 var MEN = Number(document.getElementById('MEN').value);
 var KAISU = Number(document.getElementById('KAISU').value);
-var PEOPLE_element = document.getElementById("easy");
+var PEOPLE_element = document.getElementById("PEOPLE_element");
+var SYUUKEI1 = document.getElementById("SYUUKEI1");
+var SYUUKEI2 =document.getElementById("SYUUKEI2");
+SYUUKEI1.textContent=""
+SYUUKEI2.textContent=""
 let items = document.querySelectorAll('li');
 for (const item of items) {item.remove();}//li 初期化
 
 var DRINKlist =[];
 var NEXTDRINKlist =[];
-//------------------------------例外処理---------------------------//
+//↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓例外処理↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓//
 if (PEOPLE<0 || PEOPLE >= 55000)
    {
     alert("1~55000を入力してください");
@@ -31,14 +35,33 @@ if(MEN<0 || MEN>100)
 if(KAISU<0 || KAISU>100)
 {alert("🎲回数は1～100で入力してください");return;}
 
+//↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑例外処理↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑//
 
-//------------------------------例外処理---------------------------//
-   console.log("-----------開始-----------");
+
+console.log("-----------開始-----------");
             
       var SYUKEIcount =[0,0,0,0];
       var RESULT = [];
-      
-  
+//---------------------------一人モード--------------------------------------------------
+      if(PEOPLE===1)
+      {
+        var ATEAM = SAIKORO(MEN,KAISU);//サイコロを指定回数分振って結果をATEAMとして取得
+        var syukei = HANTEI(ATEAM);//ATEAMを使って判定をし、syukeiとして取得
+        RESULT[0]=syukei[4];
+       for(var i = 1; i <= KAISU; i++){
+        console.log(i,"回目");
+        RESULT[i]=`🎲${i}回目:${ATEAM[i]}`;//テキストを指定
+        var SAIKORO_result = document.createElement('li');//li要素作成
+        SAIKORO_result.className = 'SAIKORO_list';//クラスを指定
+        SAIKORO_result.textContent = RESULT[i];//テキストを指定
+         PEOPLE_element.appendChild(SAIKORO_result);//配置場所を指定
+        console.log(RESULT[i]);
+       }
+       SYUUKEI2.innerHTML=(RESULT[0]);
+            return;//強制終了
+      };
+
+
       
       for(var a = 1; a <= PEOPLE; a++)//人数分繰り返す 
       {
@@ -50,7 +73,7 @@ if(KAISU<0 || KAISU>100)
          //------------------------------------------------------------------------------------------------
          //----------------RESULT[a](a人目の表示)= "a人目"+("i回目:i回目の🎲")+"判定結果"　という仕組み--------
              RESULT[a] = (`『${a}人目』`);
-             for(var i=1; i<ATEAM.length;i++) { RESULT[a]+=(`🎲${i}回目:${ATEAM[i]}`);}
+             for(var i=1; i<=KAISU;i++) { RESULT[a]+=(`🎲${i}回目:${ATEAM[i]}`);}
              RESULT[a]+=( `::${syukei[4]}`);
          //--------------------------------------------------------------------------------------------------
 
@@ -106,7 +129,7 @@ if(KAISU<0 || KAISU>100)
         var forth  = TEAM[1]==TEAM[2]&&TEAM[2]==TEAM[4]&&TEAM[4]==TEAM[5];
         var fifth  = TEAM[1]==TEAM[2]&&TEAM[2]==TEAM[3]&&TEAM[3]==TEAM[5];
         var sum=TEAM[0];
-        //-------------------------以下、場合分け終了--------------------------------------------
+        //-------------------------以上、場合分け終了--------------------------------------------
         
            //-------------------------------------------------------------------
         if ( sum == 5 )
@@ -180,8 +203,8 @@ if(KAISU<0 || KAISU>100)
     document.getElementById("SYUUKEI2-3").textContent = (list2);
    }
 
-
-
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------------------------------------------------------------------------------
    function option() {
    var optionArea = document.getElementById('optionArea')
     if (optionArea.style.display == 'inline'){
