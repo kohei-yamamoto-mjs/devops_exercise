@@ -25,6 +25,12 @@ if (PEOPLE<0 || PEOPLE >= 55000)
 MEN === 0?     MEN=6 :MEN=MEN;//面デフォルト設定
   console.log(KAISU,"入力された🎲回数---------");
 KAISU ===0? KAISU=5 :KAISU=KAISU;//回数デフォルト設定
+if(MEN<0 || MEN>100)
+{alert("面は1～100で入力してください");return;}
+
+if(KAISU<0 || KAISU>100)
+{alert("🎲回数は1～100で入力してください");return;}
+
 
 //------------------------------例外処理---------------------------//
    console.log("-----------開始-----------");
@@ -177,11 +183,14 @@ KAISU ===0? KAISU=5 :KAISU=KAISU;//回数デフォルト設定
 
 
    function option() {
-    if (document.getElementById('option').checked){
+   var optionArea = document.getElementById('optionArea')
+    if (optionArea.style.display == 'inline'){
       // btn_1を非表示
-      document.getElementById('option').style.display = 'none'
-    }else{
+      document.getElementById('optionArea').style.display = 'none'
+      
+    }
+    else{
       // btn_1を表示
-      document.getElementById('option').style.display = 'inline'
+      document.getElementById('optionArea').style.display = 'inline'
     }
   }
