@@ -10,7 +10,7 @@ for (const item of items) {item.remove();}//li 初期化
 var DRINKlist =[];
 var NEXTDRINKlist =[];
 //------------------------------例外処理---------------------------//
-if (PEOPLE<=0 || PEOPLE >= 55000 ||PEOPLE == undefined)
+if (PEOPLE<0 || PEOPLE >= 55000)
    {
     alert("1~55000を入力してください");
     var x = document.getElementById("SYUUKEI1");
@@ -19,6 +19,13 @@ if (PEOPLE<=0 || PEOPLE >= 55000 ||PEOPLE == undefined)
         y.innerHTML = "";
         return;//強制終了
    }
+ else if(PEOPLE ===0)PEOPLE=1;
+
+   console.log(MEN,"入力された🎲面---------");
+MEN === 0?     MEN=6 :MEN=MEN;//面デフォルト設定
+  console.log(KAISU,"入力された🎲回数---------");
+KAISU ===0? KAISU=5 :KAISU=KAISU;//回数デフォルト設定
+
 //------------------------------例外処理---------------------------//
    console.log("-----------開始-----------");
             
@@ -55,13 +62,9 @@ if (PEOPLE<=0 || PEOPLE >= 55000 ||PEOPLE == undefined)
 
       
          SYUKEIresult(SYUKEIcount);//集計をだすよ
-         SYUKEIresult2(DRINKlist,NEXTDRINKlist);
+         SYUKEIresult2(DRINKlist,NEXTDRINKlist);//当選者参照するよ
          
    console.log("-----------終了-----------");
-  
-
-
-
 
    }
    
