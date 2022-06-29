@@ -184,3 +184,7 @@
 .result{
     background-color: aliceblue;
 }
+
+#optionArea{
+  display:none;
+}
