@@ -7,22 +7,13 @@
     <link rel="stylesheet" type="text/css" href="css.css" />
     <title>Document</title>
 </head>
-<body><!--サイコロ-->
-<div id="space">
-    <div class="box">
-        <div class="face top"></div>
-        <div class="face bottom"></div>
-        <div class="face front"></div>
-        <div class="face back"></div>
-        <div class="face right"></div>
-        <div class="face left"></div>
-    </div>
-</div>
+<body>
+
    
     <div class = "IN">
 
     <!--↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ optionボタンで非表示にするべき部分↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓ -->
-    <div id =optionArea>
+    <div id =optionArea >
         
         <input type="Number" id="people" min = "1" placeholder="人数を入力してください"></input>
     <br>デフォルトでは面:6 回数:5に設定されています。
@@ -30,8 +21,9 @@
     <br><input type="Number" id="KAISU" min = "1" placeholder="🎲を振る回数を入力"></input>
     </div>
     <!-- ↑↑↑↑↑↑↑↑↑↑↑↑↑optionボタンで非表示にするべき部分 ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑-->
-   <p> <button id = "btn" onclick=" rotateSaikoro()">start</button>
-     <button id = "btn2" onclick="option()">option</button></p>
+   <p> <button class = "btn" onclick="main()">start</button>
+    <br>
+     <button class = "btn" onclick="option()">option</button></p>
 </div>
 
     <div class = "result">
