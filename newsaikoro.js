@@ -2,6 +2,9 @@ function rotateSaikoro(){
   var btnSwitch = document.getElementById('btn');
   if (btnSwitch.textContent == 'start'){
     document.getElementById('space').style.display = 'inline';
+    
+  let items = document.querySelectorAll('li');
+  for (const item of items) {item.remove();}//li 初期化
     btnSwitch.textContent = 'stop';
     
   }else{
@@ -28,8 +31,6 @@ function main (){
   var SYUUKEI2 =document.getElementById("SYUUKEI2");
   SYUUKEI1.textContent=""
   SYUUKEI2.textContent=""
-  let items = document.querySelectorAll('li');
-  for (const item of items) {item.remove();}//li 初期化
   
   var DRINKlist =[];
   var NEXTDRINKlist =[];
