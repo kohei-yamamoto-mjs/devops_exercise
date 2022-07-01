@@ -1,7 +1,7 @@
 function rotateSaikoro(){
   var btnSwitch = document.getElementById('btn');
   if (btnSwitch.textContent == 'start'){
-    document.getElementById('space').style.display = 'inline';
+    document.getElementById('box').style.display = 'inline-block';
     document.getElementById('SYUUKEI2').style.display = 'none';
   let items = document.querySelectorAll('li');
   for (const item of items) {item.remove();}//li 初期化
@@ -9,7 +9,7 @@ function rotateSaikoro(){
     
   }else{
     btnSwitch.textContent = 'start';
-    document.getElementById('space').style.display = 'none';
+    document.getElementById('box').style.display = 'none';
     document.getElementById('SYUUKEI2').style.display = 'inline';
     console.log(btnSwitch);
     main();
