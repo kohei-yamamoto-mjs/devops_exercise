@@ -160,7 +160,7 @@
       background-size: cover;
 }
 
-.btn{
+#btn{
  background: #ff701e;
  border: 2px solid #ff701e;
  border-radius: 60px;
@@ -176,7 +176,7 @@
 
 }
 
-.btn:hover {
+#btn:hover {
     letter-spacing: 0.15em;
   }
 
