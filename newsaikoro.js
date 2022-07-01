@@ -68,7 +68,7 @@ console.log("-----------開始-----------");
         RESULT[0]=syukei[4];
        for(var i = 1; i <= KAISU; i++){
         console.log(i,"回目");
-        alert(`${i}回目結果見ますか`);
+
         RESULT[i]=`🎲${i}回目:${ATEAM[i]}`;//テキストを指定
    var SAIKORO_result = document.createElement('li');//li要素作成
        SAIKORO_result.className = 'SAIKORO_list';//クラスを指定
