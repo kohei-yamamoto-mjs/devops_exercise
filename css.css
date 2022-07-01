@@ -7,7 +7,6 @@
   justify-content: center;
   align-items: center;
   margin-left: 40%;
-  display:none;
   padding-left: 45%;
 }
 
@@ -21,6 +20,7 @@
       rotateZ(-20deg);
   position: relative;
   animation: rotation  linear 1s infinite ;
+  display:none;
 }
 
 @keyframes rotation {
